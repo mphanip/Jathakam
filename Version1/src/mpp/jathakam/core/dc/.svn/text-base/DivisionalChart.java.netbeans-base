@@ -1,0 +1,49 @@
+/*
+ *
+ *
+ */
+package mpp.jatakam.core.dc;
+
+import java.util.List;
+import mpp.jatakam.core.Raasi;
+import mpp.jatakam.core.Range;
+
+/**
+ *
+ * @author phani
+ */
+public interface DivisionalChart
+{
+    /**
+     *
+     * @return name of the divisional chart for example "D9"
+     */
+    public String getName();
+
+    /**
+     * @return List of Range(Extent) for the divisional chart
+     */
+    public List<Range> getDivisions();
+
+    /**
+     * Get the divisional chart division
+     * @return division for this chart
+     */
+    public short getDivision();
+
+    /**
+     * Get divisional chart longitude
+     * @param longitude
+     * @return
+     */
+    public double getDCLongitude(double longitude);
+
+    /**
+     * To get the position of the Divisional chart Raasi aka Sign.
+     *
+     * @param raasi_d1
+     * @param planetLongitude
+     * @return Divisional chart Raasi/Sign
+     */
+    public Raasi getRaasi(double planetLongitude);
+}

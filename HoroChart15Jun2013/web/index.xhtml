@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Jatakamu Dev</title>
+        
+        <h:outputStylesheet library="css" name="horochart.css" />
+        
+        <style type="text/css">
+            .ui-layout-north {
+                z-index:20 !important;
+                overflow:visible !important;
+            }
+
+            .ui-layout-north .ui-layout-unit-content {
+                overflow:visible !important;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <f:phaseListener class="mpp.jatakamu.listener.JatakamuPhaseListener"/>
+        <f:view id="chartView" contentType="text/html">
+            <ui:debug />
+
+            <h:form id="entryForm" rendered="true">
+                <h:outputScript name="jq" library="js" target="head"></h:outputScript>
+                <p:growl id="mesgs" sticky="true" showDetail="true"/>
+                <h:panelGrid columns="2">
+                <h:panelGrid columns="6">
+                    <f:facet name="header">
+                        Cusp details.
+                    </f:facet>
+
+                    <h:outputLabel value="I Cusp: " />
+                    <h:inputText value="#{chartInfo.firstCusp}" maxlength="8" size="8"
+                                 validatorMessage="Invalid value. Range [0.0 - 360.0]" >
+                        <f:validateDoubleRange minimum="0.0" maximum="360.0" />
+                    </h:inputText>
+
+                    <h:outputLabel value="II Cusp: " />
+                    <h:inputText value="#{chartInfo.secondCusp}" maxlength="8" size="8"/>
+
+                    <h:outputLabel value="III Cusp: " />
+                    <h:inputText label="III Cusp" value="#{chartInfo.thirdCusp}" size="8" />
+
+                    <h:outputLabel value="IV Cusp: " />
+                    <h:inputText label="IV Cusp" value="#{chartInfo.fourthCusp}" size="8" />
+
+                    <h:outputLabel value="V Cusp: " />
+                    <h:inputText label="V Cusp" value="#{chartInfo.fifthCusp}" size="8" />
+
+                    <h:outputLabel value="VI Cusp: " />
+                    <h:inputText label="VI Cusp" value="#{chartInfo.sixthCusp}" size="8" />
+
+                    <h:outputLabel value="VII Cusp: " />
+                    <h:inputText label="VII Cusp" value="#{chartInfo.seventhCusp}" size="8" />
+
+                    <h:outputLabel value="VIII Cusp: " />
+                    <h:inputText label="VIII Cusp" value="#{chartInfo.eighthCusp}" size="8" />
+
+                    <h:outputLabel value="IX Cusp: " />
+                    <h:inputText label="IX Cusp" value="#{chartInfo.ninthCusp}" size="8" />
+
+                    <h:outputLabel value="X Cusp: " />
+                    <h:inputText label="X Cusp" value="#{chartInfo.tenthCusp}" size="8" />
+
+                    <h:outputLabel value="XI Cusp: " />
+                    <h:inputText label="XI Cusp" value="#{chartInfo.eleventhCusp}" size="8" />
+
+                    <h:outputLabel value="XII Cusp: " />
+                    <h:inputText label="XII Cusp" value="#{chartInfo.twelthCusp}" size="8" />
+
+                </h:panelGrid>
+                <h:panelGrid columns="6">
+                    <f:facet name="header">
+                        Planet details.
+                    </f:facet>
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(0)}: " />
+                    <h:inputText value="#{chartInfo.ketu}" size="8"/>
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(1)}" />
+                    <h:inputText value="#{chartInfo.venus}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(2)}" />
+                    <h:inputText value="#{chartInfo.sun}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(3)}" />
+                    <h:inputText value="#{chartInfo.moon}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(4)}" />
+                    <h:inputText value="#{chartInfo.mars}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(5)}" />
+                    <h:inputText value="#{chartInfo.rahu}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(6)}" />
+                    <h:inputText value="#{chartInfo.jupiter}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(7)}" />
+                    <h:inputText value="#{chartInfo.saturn}" size="8" />
+
+                    <h:outputLabel value="#{chartInfo.getPlanetName(8)}" />
+                    <h:inputText value="#{chartInfo.mercury}" size="8" />
+                </h:panelGrid>
+                </h:panelGrid>
+                
+                <p:commandButton type="submit" value="Generate Chart"
+                                 action="#{houseInfo.calculate()}"
+                                 update="centerGrid,mesgs"
+                                 rendered="true"/>
+                
+                <br/>
+                <p:panelGrid id="centerGrid">
+                    <p:row>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="11"/>
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="0"/>
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="1" />
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="2" />
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="10"/>
+                        </p:column>
+
+                        <p:column colspan="2" rowspan="2" styleClass="chart-center-cell">
+                        </p:column>
+
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="3"/>
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="9" />
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="4" />
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="8" />
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="7" />
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="6" />
+                        </p:column>
+                        <p:column styleClass="chart-table">
+                            <ezcomp:houseInfoUIComp houseIndex="5" />
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

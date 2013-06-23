@@ -1,0 +1,55 @@
+/* 
+    Document   : horochart
+    Created on : Jun 16, 2013, 11:26:46 AM
+    Author     : Phani Pramod
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.chart-table
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-color: black !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-center-cell
+{
+    font-size: 14px;
+    font-family: "Arial Unicode MS", Arial;
+}
+
+.cuspText
+{
+    font-family: "Times New Roman", serif !important;
+    font-size: large;
+    color: green !important;
+}
+
+.planetText
+{
+    font-family: "Arial Unicode MS", Arial;
+    font-size: larger;
+    font-weight: bolder;
+    color: red !important;
+}
+
+.houseText-vertical
+{
+    font-family: "Arial Unicode MS", Arial;
+    font-size: 14px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    writing-mode: vertical-rl;
+}
