@@ -1,12 +1,16 @@
 #################
 ## Eclipse
 #################
-
+.gitignore
+*~
+*.log
 *.pydevproject
 .project
 .metadata
 bin/
 tmp/
+lib/
+nbproject/
 *.tmp
 *.bak
 *.swp
