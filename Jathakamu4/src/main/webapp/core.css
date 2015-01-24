@@ -1,0 +1,17 @@
+/* 
+  * Yet to decide on the license
+  */
+/* 
+    Created on : 21 Nov, 2013, 11:18:44 PM
+    Author     : Phani
+*/
+
+.ui-widget, .ui-widget .ui-widget {
+
+    font-size: 95% !important;
+}
+
+.table-app {
+    border-style: none !important;
+    border-color: blue !important;
+}

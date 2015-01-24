@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="bean" required="true" type="mpp.jathakamu.beans.HouseInfo"></cc:attribute>
+        <cc:attribute name="houseIndex" required="true"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <table style="border-width: 0px; padding: 0px; border-collapse:collapse; border-spacing: 0px">
+            <ui:repeat value="#{cc.attrs.bean.getHouseInfo(cc.attrs.houseIndex)}" var="heobj"  >
+                <tr style="border-width: 0px; padding: 0px; border-collapse:collapse; border-spacing: 0px">
+                    <td style="border-width: 0px; padding: 0px; border-spacing: 0px">
+                        <table>
+                            <tr style="padding: 0px; column-gap: 1em;; border-collapse:collapse; border-spacing: 0px">
+                                <td style="border-width: 0px; padding: 0px; white-space: nowrap; border-collapse:collapse; border-spacing: 0px" >
+                                    <div id="id_house_#{cc.attrs.houseIndex}_#{heobj.getCuspOrPlanet()}"
+                                        title="#{heobj.getInfo()}"
+                                        class="#{heobj.getType() eq 'CUSP' ? 'cuspText' : 'planetText'}">
+                                        #{heobj.getPlanetName()}
+                                    </div>
+                                </td>
+                                <td style="border-width: 0px; padding: 0px; white-space: nowrap; border-collapse:collapse; border-spacing: 0px">
+                                    #{heobj.getPositionInDegree()}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </ui:repeat>
+        </table>
+    </cc:implementation>
+</html>

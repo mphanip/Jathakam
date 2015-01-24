@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="houseInfoBean" required="true" type="mpp.jathakamu.beans.HouseInfo"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:panelGrid id="centerGrid">
+            <p:row>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="11"/>
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="0"/>
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="1" />
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="2" />
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="10"/>
+                </p:column>
+
+                <p:column colspan="2" rowspan="2" styleClass="chart-center-cell">
+                    <ui:repeat value="#{cc.attrs.houseInfoBean.information}" var="infoobj"  >
+                        <h:outputLabel value="#{infoobj}" />
+                        <br/>
+                    </ui:repeat>
+                </p:column>
+
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="3"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="9" />
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="4" />
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="8" />
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="7" />
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="6" />
+                </p:column>
+                <p:column styleClass="chart-table-cell">
+                    <ezcomp:houseInfoUIComp bean="#{cc.attrs.houseInfoBean}" houseIndex="5" />
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    </cc:implementation>
+</html>

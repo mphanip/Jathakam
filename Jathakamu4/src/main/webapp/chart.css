@@ -1,0 +1,209 @@
+/* 
+  * Yet to decide on the license
+  */
+/* 
+    Created on : 22 Nov, 2013, 8:21:38 PM
+    Author     : phani
+*/
+
+.chart-table-cell
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-color: black !important;
+    border-width: 2px !important;
+}
+
+.chart-center-cell
+{
+    vertical-align: central;
+    text-align: left;
+    font-size: 14px;
+    font-family: "Arial Unicode MS", Arial;
+    font-style: oblique;
+    border-color: black !important;
+}
+
+.cuspText
+{
+    font-family: "Times New Roman", serif !important;
+    font-size: inherit;
+    font-weight: bolder;
+    color: green !important;
+}
+
+.planetText
+{
+    font-family: "Arial Unicode MS", Arial;
+    font-size: inherit;
+    font-weight: bolder;
+    color: red !important;
+}
+
+.houseText-vertical
+{
+    font-family: "Arial Unicode MS", Arial;
+    font-size: 14px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    writing-mode: vertical-rl;
+}
+
+.chart-table-transit-corner-left-top
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: white !important;
+    border-top-color: black !important;
+    border-left-color:  black !important;
+    border-right-color: white !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-corner-right-top
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: white !important;
+    border-top-color: black !important;
+    border-left-color:  white !important;
+    border-right-color: black !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-corner-left-bottom
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: black !important;
+    border-top-color: white !important;
+    border-left-color:  black !important;
+    border-right-color: white !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-corner-right-bottom
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: black !important;
+    border-top-color: white !important;
+    border-left-color:  white !important;
+    border-right-color: black !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-right
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: black !important;
+    border-top-color: black !important;
+    border-left-color:  black !important;
+    border-right-color: white !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-left
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: black !important;
+    border-top-color: black !important;
+    border-left-color:  white !important;
+    border-right-color: black !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-top
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: black !important;
+    border-top-color: white !important;
+    border-left-color:  black !important;
+    border-right-color: black !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+.chart-table-transit-bottom
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-bottom-color: white !important;
+    border-top-color: black !important;
+    border-left-color:  black !important;
+    border-right-color: black !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+}
+
+chart-table1
+{
+    width: 500px;
+    height: 500px;
+    vertical-align: top;
+    text-align: left;
+    font-family: "Arial Unicode MS", Arial;
+    font-size: 14px;
+    border-style: solid;
+    border-width: 0;
+    margin: 0;
+}
+
+chart-table1-td
+{
+    width: 130px;
+    height: 130px;
+    vertical-align: top;
+    text-align: left;
+    color: blue;
+    font-size:14px;
+    border-color: red;
+    border-style: solid;
+    border-width: 2px;
+}

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <head jsf:id="head">
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        <title>Learning how to write pure HTML5 using JSF</title>
+        <link jsf:name="core.css" rel="stylesheet" type="text/css" />
+        <link jsf:name="chart.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body jsf:id="body" prependId="false">
+        <form jsf:id="mainForm">
+
+            <table jsf:id="chartTable" border="1" jsf:styleClass="chart-table1">
+                <tr>
+                    <td jsf:styleClass="chart-table1-td"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" rowspan="2"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>
+            
+            <br/>
+
+            <p:outputLabel value="Time Zone: " />
+            <p:inputText value="#{mainBean.timeZone}" pt:placeholder="Enter Date &amp; Time" />
+            <br/>
+            <div>#{mainBean.eventTime}</div>
+            <div>
+                <canvas jsf:id="canvas1" width="100" height="2100">
+                    Canvas not supported by your browser. Check if JavaScript is enabled.
+                </canvas>
+            </div>
+
+        </form>
+
+    </body>
+
+</html>
+

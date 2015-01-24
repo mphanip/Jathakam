@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+    <h:head>
+        <title>Jathakamu Version 0.1</title>
+        <LINK href="core.css" rel="stylesheet" type="text/css" />
+        <LINK href="chart.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <f:phaseListener type="mpp.jathakamu.listener.JathakamuPhaseListener"/>
+        <h:form id="mainForm">
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                    <p:commandButton type="Button" value="New" icon="ui-icon-new"/>
+                    <p:commandButton type="Button" value="Edit" icon="ui-icon-document" onclick="PF('editChartDlg').show()"/>
+                    <p:commandButton type="Button" value="Open" icon="ui-icon-open"/>
+                    <p:commandButton type="Button" value="Save" icon="ui-icon-save"/>
+                    <p:commandButton type="Button" value="Setting" icon="ui-icon-wrench"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+
+            <table>
+                <tr>
+                    <td>
+                        <p:panel closable="false" header="Natal Chart" toggleable="true" toggleOrientation="vertical">
+                            <ezcomp:southernStyleChart houseInfoBean="${mainBean}"/>
+                        </p:panel>
+                    </td>
+                    <td>
+                        <p:carousel id="otherCharts" circular="true"
+                                    headerText="Transit &amp; Dasa Charts"
+                                    numVisible="1" widgetVar="wvOtherCharts">
+
+                            <p:tab title="Transit Chart">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <ezcomp:southernStyleChart id="transitChartId" houseInfoBean="${transitChart}"/>
+                                        </td>
+                                        <td>
+                                            <h:commandButton id="refreshBtn" value="Refresh"
+                                                             onclick="#{transitChart.generateNewTransit()}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p:tab>
+                        </p:carousel>
+                    </td>
+                </tr>
+            </table>
+
+            <p:panel header="Vimshottari Dasa" toggleable="true">
+                <table border="" cellspacing="2" cellpadding="0" >
+                    <tr style="border-width: 0px; background: lightgrey">
+                        <th>Maha Dasa</th>
+                        <th>Antara / Bhukthi</th>
+                        <th>Pratyantara</th>
+                        <th>Sookshma</th>
+                        <th>Prana</th>
+                    </tr>
+                    <tr style="border-width: 0px;">
+                        <td style="border-width: 0px; padding: 0; vertical-align: top">
+                            <p:selectOneListbox id="mahaDasa"
+                                                value="#{mainBean.selectedMahaDasaString}"
+                                                style="width: 200px">
+                                <f:selectItems value="#{mainBean.mahaDasaList}"
+                                               var="vdNode"
+                                               itemValue="#{vdNode}"
+                                               itemLabel="#{vdNode.toString()}"
+                                               itemDescription="Planet Name"/>
+                                <p:ajax listener="#{mainBean.onMahaDasa}" update="bhukthi,pratyantara,sookshma,prana"/>
+                            </p:selectOneListbox>
+                        </td>
+                        <td style="border-width: 0px; padding: 0; vertical-align: top">
+                            <p:selectOneListbox id="bhukthi"
+                                                value="#{mainBean.selectedBhukthiString}"
+                                                style="width: 200px">
+                                <f:selectItems value="#{mainBean.bhukthiList}"/>
+                                <p:ajax listener="#{mainBean.onBhukthi}" update="pratyantara,sookshma,prana"/>
+                            </p:selectOneListbox>
+                        </td>
+                        <td style="border-width: 0px; padding: 0; vertical-align: top">
+                            <p:selectOneListbox id="pratyantara"
+                                                value="#{mainBean.selectedPratyantaraString}"
+                                                style="width: 200px">
+                                <f:selectItems value="#{mainBean.pratyantaraList}"/>
+                                <p:ajax listener="#{mainBean.onPratyantara}" update="sookshma,prana"/>
+                            </p:selectOneListbox>
+                        </td>
+                        <td style="border-width: 0px; padding: 0; vertical-align: top">
+                            <p:selectOneListbox id="sookshma"
+                                                value="#{mainBean.selectedSookshmaString}"
+                                                style="width: 200px">
+                                <f:selectItems value="#{mainBean.sookshmaList}"/>
+                                <p:ajax listener="#{mainBean.onSookshma}" update="prana"/>
+                            </p:selectOneListbox>
+                        </td>
+                        <td style="border-width: 0px; padding: 0; vertical-align: top">
+                            <p:selectOneListbox id="prana" style="width: 200px">
+                                <f:selectItems value="#{mainBean.pranaList}"/>
+                            </p:selectOneListbox>
+                        </td>
+                    </tr>
+                </table>
+            </p:panel>
+
+            <p:spacer/>
+
+            <p:accordionPanel multiple="true" cache="true">
+                <p:tab title="Cusp Information">
+                    <p:dataTable id="cuspDetails" var="lordsInfo" value="#{mainBean.cuspDetails}" resizableColumns="true">
+<!--                        <f:facet name="header">
+                            Cusp Information
+                        </f:facet>-->
+                        <p:column headerText="Cusp">
+                            <h:outputText value="#{lordsInfo.name}" />
+                        </p:column>
+                        <p:column headerText="Longitude">
+                            <h:outputText value="#{lordsInfo.longitude}" />  
+                        </p:column>  
+
+                        <p:column headerText="Sign Lord">  
+                            <h:outputText value="#{lordsInfo.signLord}" />  
+                        </p:column>  
+
+                        <p:column headerText="Star Lord">  
+                            <h:outputText value="#{lordsInfo.starLord}" />  
+                        </p:column>  
+
+                        <p:column headerText="Sub Lord">  
+                            <h:outputText value="#{lordsInfo.subLord}" />  
+                        </p:column>  
+
+                        <p:column headerText="Sub2 Lord">  
+                            <h:outputText value="#{lordsInfo.sub2Lord}" />  
+                        </p:column>
+
+                        <p:column headerText="Sub3 Lord">  
+                            <h:outputText value="#{lordsInfo.sub3Lord}" />  
+                        </p:column>
+
+                        <p:column headerText="Sub4 Lord">  
+                            <h:outputText value="#{lordsInfo.sub4Lord}" />  
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+                <p:tab title="Planets Information">
+                    <p:dataTable id="planetDetails" var="lordsInfo" value="#{mainBean.planetDetails}" resizableColumns="true">  
+<!--                        <f:facet name="header">
+                            Planets Information
+                        </f:facet>-->
+
+                        <p:column headerText="Planet Name" width="50px">
+                            <h:outputText value="#{lordsInfo.name}"/>
+                        </p:column>
+
+                        <p:column headerText="Longitude" width="50px">  
+                            <h:outputText value="#{lordsInfo.longitude}" />  
+                        </p:column>  
+
+                        <p:column headerText="Sign Lord">  
+                            <h:outputText value="#{lordsInfo.signLord}" />  
+                        </p:column>  
+
+                        <p:column headerText="Star Lord">  
+                            <h:outputText value="#{lordsInfo.starLord}" />  
+                        </p:column>  
+
+                        <p:column headerText="Sub Lord">  
+                            <h:outputText value="#{lordsInfo.subLord}" />  
+                        </p:column>  
+
+                        <p:column headerText="Sub2 Lord">  
+                            <h:outputText value="#{lordsInfo.sub2Lord}" />  
+                        </p:column>
+
+                        <p:column headerText="Sub3 Lord">  
+                            <h:outputText value="#{lordsInfo.sub3Lord}" />  
+                        </p:column>
+
+                        <p:column headerText="Sub4 Lord">  
+                            <h:outputText value="#{lordsInfo.sub4Lord}" />  
+                        </p:column>
+                    </p:dataTable> 
+                </p:tab>
+            </p:accordionPanel>
+
+            <p:dialog header="Edit Information" widgetVar="editChartDlg">
+                <p>
+                    <p:outputLabel id="nameLabel" value="Name: " />
+                    <p:inputText id="name" maxlength="30" value="#{eventData.name}" />&nbsp;&nbsp;
+                    <p:outputLabel id="genderLabel" value="Gender: " />
+                    <h:selectOneMenu id="gender" value="#{eventData.gender}">  
+                        <f:selectItems value="#{eventData.genders}" />  
+                    </h:selectOneMenu>
+                </p>
+                <p>
+                    <h:outputLabel id="eventLabel" value="Data and Time: " />
+                    <p:calendar id="eventValue" pattern="dd/MM/yyyy HH:mm:ss"
+                                value="#{eventData.eventTime}"
+                                mindate="01/01/1900"
+                                navigator="true"/>&nbsp;&nbsp;
+
+                    <h:outputLabel id="tzLabel" value="Time Zone: " for="eventTimeZone"/>
+                    <p:autoComplete id="eventTimeZone" dropdown="true"
+                                    value="#{eventData.timeZone}" maxResults="10"
+                                    completeMethod="#{eventData.getAutoCompleteTimeZones}" />
+                </p>
+                <p>
+                    <p:panel id="longitudeLabel" header="Longitude &amp; Latitude"
+                             closable="false" toggleable="true">
+                        <table cellpadding="5">
+                            <tr>
+                                <td>
+                                    Longitude:&nbsp;
+                                    <p:inputText id="longitudeValue" value="#{eventData.viewLongitude}" >
+                                        <f:convertNumber minFractionDigits="6" />
+                                        <p:ajax update="longitudeDeg,longitudeMins,longitudeSecs"/>
+                                    </p:inputText>
+                                    <p>OR</p>
+                                    <p:outputLabel for="longitudeDeg" value="Deg "/>
+                                    <p:inputText id="longitudeDeg" label="Deg" value="#{eventData.longitudeDeg}" maxlength="3" size="3">
+                                        <f:convertNumber minFractionDigits="0" />
+                                        <p:ajax update="longitudeValue"/>
+                                    </p:inputText>
+                                    <p:outputLabel for="longitudeMins" value=" Mins "/>
+                                    <p:inputText id="longitudeMins" label="Mins" value="#{eventData.longitudeMins}" maxlength="2" size="2">
+                                        <f:convertNumber minFractionDigits="0"/>
+                                        <p:ajax update="longitudeValue"/>
+                                    </p:inputText>
+                                    <p:outputLabel for="longitudeSecs" value=" Secs "/>
+                                    <p:inputText id="longitudeSecs" label="Secs" value="#{eventData.longitudeSecs}" maxlength="2" size="2">
+                                        <f:convertNumber minFractionDigits="0" />
+                                        <p:ajax update="longitudeValue"/>
+                                    </p:inputText>
+                                    <p>Direction:
+                                        <h:selectOneMenu id="longitudeDirection" value="#{eventData.longitudeDirection}">  
+                                            <f:selectItems value="#{eventData.longitudeDirectons}" />  
+                                        </h:selectOneMenu>
+                                    </p>
+                                </td>
+                                <td>
+                                    Latitude:&nbsp;
+                                    <p:inputText id="latitudeValue" value="#{eventData.viewLatitude}" >
+                                        <f:convertNumber minFractionDigits="6" />
+                                        <p:ajax update="latitudeDeg,latitudeMins,latitudeSecs"/>
+                                    </p:inputText>
+                                    <p>OR</p>
+                                    <p:outputLabel for="latitudeDeg" value="Deg "/>
+                                    <p:inputText id="latitudeDeg" label="Deg" value="#{eventData.latitudeDeg}" maxlength="3" size="3">
+                                        <f:convertNumber minFractionDigits="0" />
+                                        <p:ajax update="latitudeValue"/>
+                                    </p:inputText>
+                                    <p:outputLabel for="latitudeMins" value=" Mins "/>
+                                    <p:inputText id="latitudeMins" label="Mins" value="#{eventData.latitudeMins}" maxlength="2" size="2">
+                                        <f:convertNumber minFractionDigits="0"/>
+                                        <p:ajax update="latitudeValue"/>
+                                    </p:inputText>
+                                    <p:outputLabel for="latitudeSecs" value=" Secs "/>
+                                    <p:inputText id="latitudeSecs" label="Secs" value="#{eventData.latitudeSecs}" maxlength="2" size="2">
+                                        <f:convertNumber minFractionDigits="0" />
+                                        <p:ajax update="latitudeValue"/>
+                                    </p:inputText>
+                                    <p>Direction:
+                                        <h:selectOneMenu id="latitudeDirection" value="#{eventData.latitudeDirection}">  
+                                            <f:selectItems value="#{eventData.latitudeDirectons}" />  
+                                        </h:selectOneMenu>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </p:panel>
+                </p>
+
+                <p>
+                    <p:commandButton value="submit" type="submit"
+                                     onclick="PF('editChartDlg').hide()"
+                                     action="#{mainBean.submit()}" />
+                </p>
+            </p:dialog>
+
+        </h:form>
+    </h:body>
+</html>
