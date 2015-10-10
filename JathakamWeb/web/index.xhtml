@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head jsf:id="head">
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        <title>Jathakam Version 0.1</title>
+        <script src="http://maps.google.com/maps/api/js?sensor=false"
+                type="text/javascript"/>
+    </head>
+
+    <h:body id="body">
+        <h:outputScript library="js" name="jquery.js" />
+        <h:outputScript library="js" name="jqueryui/jquery-ui.js"/>
+        <h:outputScript library="js" name="jeditable/jeditable.min.js" />
+        <h:outputScript library="js" name="chart.js" />
+        <h:outputStylesheet library="css" name="chart.css"/>
+
+        <h:form id="mainForm">
+            <p:panelGrid id="placeDetails" styleClass="no-border">
+                <p:row>
+                    <p:column style="text-align: right">
+                        <p:outputLabel id="lblName" value="Name:" for="nameEdit"/>
+                    </p:column>
+                    <p:column>
+                        <p:inplace id="nameEdit" editor="true">
+                            <f:facet name="output">
+                                <p:outputLabel id="inputValue" value="#{birthInfo.name}"
+                                               style="font-size: x-largelarge" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{birthInfo.name}"/>    
+                            </f:facet>
+                        </p:inplace>
+                    </p:column>
+                    <p:column style="text-align: right">
+                        <p:outputLabel for="chartDate" value="Date:" />
+                    </p:column>
+                    <p:column>
+                        <h:inputText id="chartDate" value="#{birthInfo.date}" styleClass="datepicker-input" readonly="true"/>
+                    </p:column>
+                    <p:column style="text-align: right">
+                        <p:outputLabel for="chartTime" value="Time:" />
+                    </p:column>
+                    <p:column>
+                        <p:inplace id="chartTime" editor="true">
+                            <f:facet name="output">
+                                <p:outputLabel id="chartTimeLabel" value="#{birthInfo.time}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:spinner id="hour" value="#{birthInfo.hours}" min="0" max="23" maxlength="2" size="1" title="Hours"/>
+                                <p:spinner id="minutes" value="#{birthInfo.minutes}" min="0" max="59" maxlength="2" size="1" title="Minutes"/>
+                                <p:spinner id="secs" value="#{birthInfo.seconds}" min="0.0" max="59.999" stepFactor="0.050" maxlength="6" size="4" title="Seconds (For more accuracy use fractions - milliseconds)"/>
+                            </f:facet>
+                        </p:inplace>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="text-align: right">
+                        <p:outputLabel for="address" value="Place:" />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="address" value="#{birthInfo.place}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-search" onclick="geocode()" type="button" />
+                    </p:column>
+                    <p:column rowspan="4" colspan="3">
+                        <p:gmap id="geoGmap" widgetVar="geoMap"
+                                center="#{birthInfo.latitude}, #{birthInfo.longitude}"
+                                zoom="#{birthInfo.zoom}"
+                                model="#{birthInfo.model}"
+                                type="ROADMAP"
+                                style="width:300px;height:200px"
+                                mapTypeControl="false"
+                                onPointClick="handlePointClick(event);">
+                            <p:ajax event="pointSelect" listener="#{birthInfo.onPointSelect}" update="geoGmap,address,lng,lngLabelValue,lat,latLabelValue"/>
+                            <p:ajax event="stateChange" listener="#{birthInfo.onStateChange}" />
+                        </p:gmap>
+                        <h:outputText style="display:none" value="#{birthInfo.zoom}" id="mapZoom"/>                        
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="text-align: right">
+                        <h:outputLabel id="lblLongitude" value="Longitude:" for="lngEdit"/>
+                    </p:column>
+                    <p:column colspan="5">
+                        <p:inplace id="lngEdit" editor="true">
+                            <f:facet name="output">
+                                <p:outputLabel id="lngLabelValue" value="#{birthInfo.longitudeAsString}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="lng" value="#{birthInfo.longitude}" maxlength="8" style="width: 50px"/>    
+                            </f:facet>
+                        </p:inplace>
+                    </p:column>
+                </p:row>
+                
+                <p:row>
+                    <p:column style="text-align: right">
+                        <h:outputLabel id="lblLatitude" value="Latitude:" for="latEdit"/>
+                    </p:column>
+                    <p:column colspan="5">
+                        <p:inplace id="latEdit" editor="true">
+                            <f:facet name="output">
+                                <p:outputLabel id="latLabelValue" value="#{birthInfo.latitudeAsString}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="lat" value="#{birthInfo.latitude}"/>    
+                            </f:facet>
+                        </p:inplace>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="text-align: right">
+                        <h:outputLabel id="lblTimezone" value="Timezone: " for="timezone"/>
+                    </p:column>
+                    <p:column colspan="5">
+                        <h:selectOneMenu id="timezone" value="#{birthInfo.timezone}">
+                            <f:selectItems value="#{birthInfo.availableTimeZones}" />
+                        </h:selectOneMenu>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+            <br/>
+            <table jsf:id="chartTable" border="1" class="chart-table1">
+                <tr>
+                    <td class="chart-table-cell">12</td>
+                    <td class="chart-table-cell">1</td>
+                    <td class="chart-table-cell">2</td>
+                    <td class="chart-table-cell">3</td>
+                </tr>
+                <tr>
+                    <td class="chart-table-cell">11</td>
+                    <td id="center" colspan="2" rowspan="2" class="chart-table-cell"></td>
+                    <td class="chart-table-cell">4</td>
+                </tr>
+                <tr>
+                    <td class="chart-table-cell">10</td>
+                    <td class="chart-table-cell">5</td>
+                </tr>
+                <tr>
+                    <td class="chart-table-cell">9</td>
+                    <td class="chart-table-cell">8</td>
+                    <td class="chart-table-cell">7</td>
+                    <td class="chart-table-cell">6</td>
+                </tr>
+            </table>
+            <br/>
+            <textarea id="output" cols="80" rows="10"/>
+        </h:form>
+    </h:body>
+</html>
+

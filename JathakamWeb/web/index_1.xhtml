@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <head jsf:id="head">
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        <title>Learning to write pure HTML5 using JSF</title>
+    </head>
+
+    <body jsf:id="body" prependId="false">
+        <h:outputStylesheet library="css" name="chart.css"/>
+        <h:outputScript library="js" name="jquery.js" />
+        <h:outputScript library="js" name="jqueryui/jquery-ui.js"/>
+        <h:outputScript library="js" name="chart.js" />
+        
+        <form jsf:id="mainForm">
+            <table jsf:id="chartTable" border="1" class="chart-table1">
+                <tr>
+                    <td class="chart-table-cell">12</td>
+                    <td class="chart-table-cell">1</td>
+                    <td class="chart-table-cell">2</td>
+                    <td class="chart-table-cell">3</td>
+                </tr>
+                <tr>
+                    <td class="chart-table-cell">11</td>
+                    <td id="center" colspan="2" rowspan="2" class="chart-table-cell"></td>
+                    <td class="chart-table-cell">4</td>
+                </tr>
+                <tr>
+                    <td class="chart-table-cell">10</td>
+                    <td class="chart-table-cell">5</td>
+                </tr>
+                <tr>
+                    <td class="chart-table-cell">9</td>
+                    <td class="chart-table-cell">8</td>
+                    <td class="chart-table-cell">7</td>
+                    <td class="chart-table-cell">6</td>
+                </tr>
+            </table>
+<!--            <div id="accordionDemo" style="width: 50%; margin-left: auto; margin-right: auto;">
+                <h3><a href="#">Top Section</a></h3>
+                <div>
+                    <p>Initial content for the first "tab" of the accordion goes here.</p>
+                </div>
+                <h3><a href="#">Next Section</a></h3>
+                <div>
+                    <p>More content...</p>
+                </div>
+                <h3><a href="#">Last section</a></h3>
+                <div>
+                    <p>You can have as many accordion sections as needed.</p>
+                </div>
+            </div>-->
+
+<!--            <div id="tabDemo" style="width: 50%; margin-left: auto; margin-right: auto;">
+                <ul>
+                    <li><a href="#t1">First Tab</a></li>
+                    <li><a href="#t2">Middle Tab</a></li>
+                    <li><a href="#t3">Last Tab</a></li>
+                </ul>
+                <div id="t1">
+                    <p>First tab content goes here. The anchor href for the tab titles must 
+                        match the div for the content.</p>
+                </div>
+                <div id="t2">
+                    <p>Second Tab Content</p>
+                    <br />
+                    <img src="http://www.google.com/images/logos/ps_logo2.png" />
+                </div>
+                <div id="t3">
+                    <p>As with the Accordion, you can have as many tabs as you want, although 
+                        horizontal width places some practical limit there.</p>
+                </div>
+            </div>-->
+<!--                        <p:inplace editor="true">
+                            <f:facet name="output">
+                                <p:outputLabel id="chartDateReadOnly" value="#{nativeBirthInfo.date}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText  id="chartDate" value="#{nativeBirthInfo.date}" styleClass="datepicker-input"/>
+                            </f:facet>
+                        </p:inplace>-->
+            <input id="mesg" type="text" />
+            <input id="send" type="button" value="Send"/>
+            <br/>
+            <span id="output"></span>
+        </form>
+    </body>
+</html>
+
+
+
