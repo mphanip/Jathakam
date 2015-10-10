@@ -20,7 +20,7 @@ import mpp.jathakamu.utils.ViewUtils;
  *
  * @author Phani
  */
-@XmlRootElement
+@XmlRootElement(name = "profile")
 public class Profile
 {
     /**
