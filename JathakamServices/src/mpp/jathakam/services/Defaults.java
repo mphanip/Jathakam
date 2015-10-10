@@ -35,7 +35,7 @@ public final class Defaults
 {
     public static String DEFAULT_TIME_ZONE = "Asia/Calcutta";
     public static double ONE_YEAR = 365.2425D;
-    public static Place DEFAULT_PLACE = new Place.PlaceBuilder().name("Hyderabad").longitude(78.5D)
-            .timeZone(DEFAULT_TIME_ZONE).latitude(17D + 20D/60D).build();
+    public static Place DEFAULT_PLACE = new Place.PlaceBuilder().name("Bangalore").longitude(77.69128584D)
+            .timeZone(DEFAULT_TIME_ZONE).latitude(12.8257395D).build();
     
 }
