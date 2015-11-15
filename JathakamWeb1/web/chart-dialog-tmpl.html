@@ -1,0 +1,59 @@
+<md-dialog aria-label="Natal Chart Info and settings" class="dialogChartDetails" id="popupContainer">
+    <form ng-controller="DialogController as dlg" >
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Natal Chart data and settings</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="dlg.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="dlg.save('Update Chart')">
+                Save
+            </md-button>
+        </md-dialog-actions>
+        <md-dialog-content>
+            <div ng-cloak="">
+                <md-content class="md-padding">
+                    <md-tabs class="md-primary" md-selected="0" md-dynamic-height="" md-border-bottom="">
+                        <md-tab id="chartDetailsId">
+                            <md-tab-label>Chart details</md-tab-label>
+                            <md-tab-body>
+                                <md-input-container>
+                                    <label>Name</label>
+                                    <input id="name" ng-model="dlg.name"/>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Date & Time</label>
+                                    <input type="datetime-local" id="name" ng-model="dlg.dateTime" ngMax="dlg.maxDate"/>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Place name</label>
+                                    <input ng-model="dlg.placeName" />
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Longitude</label>
+                                    <input type="number" ng-model="dlg.longitude" />
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Latitude</label>
+                                    <input type="number" ng-model="dlg.latitude" />
+                                </md-input-container>
+                            </md-tab-body> 
+                        </md-tab>
+
+                        <md-tab id="settings">
+                            <md-tab-label>Settings</md-tab-label>
+                            <md-tab-body>
+                                <h1 class="md-display-2">Settings</h1>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

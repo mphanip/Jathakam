@@ -1,0 +1,302 @@
+            <script id="chart-cell-template" type="text/ng-template">
+                <span style="font-size: larger; color: blue">{{main.objectSign(zi.objectType)}}</span>
+                <span style="font-size: small">{{main.degree(zi.position) }}</span><br/>
+            </script>
+            <script id="grid-header-template" type="text/ng-template">
+                <md-grid-tile-header class="gray">
+                    <h3>{{signValue}}</h3>
+                </md-grid-tile-header>
+            </script>
+            <script id="grid-tile-asc-template" type="text/ng-template">
+                <md-content layout="column" class="gray">
+                    <span ng-repeat="zi in main.chartData.zodiacInfo[index].infoList| orderBy: 'position'"
+                          ng-include="'chart-cell-template'">
+                    </span>
+                </md-content>
+            </script>
+            <script id="grid-tile-desc-template" type="text/ng-template">
+                <md-content layout="column" class="gray">
+                    <span ng-repeat="zi in main.chartData.zodiacInfo[index].infoList| orderBy: '-position'"
+                          ng-include="'chart-cell-template'">
+                    </span>
+                </md-content>
+            </script>
+            
+            <script id="grid-tile-test-template" type="text/ng-template">
+                <md-grid-tile class="gray">
+                    <md-grid-tile-header class="gray">
+                        <h3>{{signValue}}</h3>
+                    </md-grid-tile-header>
+                    <md-content layout="column" class="gray">
+                        <span ng-repeat="zi in main.chartData.zodiacInfo[ind].infoList| orderBy: 'position'">
+                            <span style="font-size: larger; color: blue">{{main.objectSign(zi.objectType)}}</span>
+                            <span style="font-size: small">{{main.degree(zi.position) }}</span><br/>
+                        </span>
+                    </md-content>
+                </md-grid-tile>
+            </script>
+
+
+<md-tab-body>
+    <md-grid-list md-cols="4" md-row-height="7:10" md-gutter="2px">
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span ng-repeat="zi in main.transitData.zodiacInfo[11].infoList| orderBy: 'position'"
+                      ng-include="'chart-cell-template'">
+                </span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[0].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[1].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[2].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[10].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile md-colspan="2" md-rowspan="2">
+            <md-content>
+                <p>D9 Chart</p>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[3].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[9].infoList| orderBy: '-position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">                    
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[4].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[8].infoList| orderBy: '-position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[7].infoList| orderBy: '-position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[6].infoList| orderBy: '-position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+        <md-grid-tile class="gray">
+            <md-content layout="column" class="gray">
+                <span  ng-repeat="zi in main.transitData.zodiacInfo[5].infoList| orderBy: 'position'"
+                       ng-include="'chart-cell-template'"></span>
+            </md-content>
+        </md-grid-tile>
+    </md-grid-list>
+</md-tab-body>
+
+<div flex layout-padding>
+                    <br/>
+                    <md-grid-list md-cols="4" md-row-height="7:10" md-gutter="2px">
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x2653'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 11" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x2648'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 0" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x2649'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 1" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x264A'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 2" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x2652'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 10" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile md-colspan="2" md-rowspan="2"></md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x264B'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 3" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x2651'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 9" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x264C'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 4" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x2650'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 8" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x264F'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 7" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x264E'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 6" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                        <md-grid-tile class="gray">
+                            <div ng-init="signValue = '&#x264D'" ng-include="'grid-header-template'"></div>
+                            <div ng-init="index = 5" ng-include="'grid-tile-asc-template'"></div>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+
+<div>
+                <table class="table-bordered">
+                    <tbody>
+                        <tr>
+                            <td id="cell12">
+                                <span ng-repeat="zi in main.chartData.zodiacInfo[11].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell1">
+                                <span  ng-repeat="zi in main.chartData.zodiacInfo[0].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell2">
+                                <span  ng-repeat="zi in main.chartData.zodiacInfo[1].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell3">
+                                <span  ng-repeat="zi in main.chartData.zodiacInfo[2].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="cell11">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[10].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="center" rowspan="2" colspan="2" style="vertical-align: top; padding-top: 5px"></td>
+                            <td id="cell4">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[3].infoList" ng-include="'chart-cell-template'"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="cell10">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[9].infoList| orderBy: '-position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell5">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[4].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="cell9">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[8].infoList| orderBy: '-position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell8">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[7].infoList| orderBy: '-position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell7">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[6].infoList| orderBy: '-position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                            <td id="cell6">
+                                <span   ng-repeat="zi in main.chartData.zodiacInfo[5].infoList| orderBy: 'position'" ng-include="'chart-cell-template'"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+                <table class="table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td><input id="name" ng-model="main.chartData.name" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Date(DD MM YYYY):
+                                <input id="day" ng-model="main.chartData.day" maxlength="2" style="width: 25px"/>
+                                <input id="month" ng-model="main.chartData.month" maxlength="2" style="width: 25px" value="{{main.chartData.month}}"/>
+                                <input id="year" ng-model="main.chartData.year" maxlength="4" style="width: 40px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Time(HH MM SS MS):
+                                <input id="hours" ng-model="main.chartData.hours" maxlength="2" style="width: 25px"/>
+                                <input id="minutes" ng-model="main.chartData.minutes" maxlength="2" style="width: 25px"/>
+                                <input id="seconds" ng-model="main.chartData.seconds" maxlength="2" style="width: 25px"/>
+                                <input id="millis" ng-model="main.chartData.millis" maxlength="3" style="width: 35px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Place : <input id="placeName" ng-model="main.chartData.placeName"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Longitude :<input id="longitude" ng-model="main.chartData.longitude" maxlength="7" style="width: 60px"/>
+                                Latitude :<input id="latitude" ng-model="main.chartData.latitude" maxlength="7" style="width: 60px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="padding-left: 50%">
+                                <div id="btn1" class="btn-primary"
+                                     style="text-align: center;cursor: pointer"
+                                     ng-click="main.onChartSubmit()">Update</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+<div layout="row">
+                <div flex="25" style="border: #000 solid thin">
+                    <span>Row1, col1</span><br/>
+                    <span>Row1, col1</span><br/>
+                    <span>Row1, col1</span><br/>
+                    <span>Row1, col1</span><br/>
+                    <span>Row1, col1</span>
+                </div>
+                <div flex="25" style="border: #000 solid thin">Row1, col2</div>
+                <div flex="25" style="border: #000 solid thin">Row1, col3</div>
+                <div flex="25" style="border: #000 solid thin">Row1, col4</div>
+            </div>
+            <div layout="row">
+                <div flex="25" style="border: #000 solid thin">Row2, col1</div>
+                <div flex="50"></div>
+                <div flex="25" style="border: #000 solid thin">Row2, col4</div>
+            </div>
+            <div layout="row">
+                <div flex="25" style="border: #000 solid thin">Row3, col1</div>
+                <div flex="50"></div>
+                <div flex="25" style="border: #000 solid thin">Row3, col4</div>
+            </div>
+            <div layout="row">
+                <div flex="25" style="border: #000 solid thin">Row4, col1</div>
+                <div flex="25" style="border: #000 solid thin">Row4, col2</div>
+                <div flex="25" style="border: #000 solid thin">Row4, col3</div>
+                <div flex="25" style="border: #000 solid thin">Row4, col4</div>
+            </div>

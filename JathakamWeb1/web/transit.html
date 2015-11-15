@@ -1,0 +1,14 @@
+<md-grid-list md-cols="4" md-row-height="7:10" md-gutter="2px">
+    <md-grid-tile ng-repeat="tile in main.transitGrid"
+                  md-rowspan='{{tile.span.row}}'
+                  md-colspan='{{tile.span.col}}'
+                  class="zodiac">
+        <md-grid-tile-header class="zodiac"><h3>{{tile.sign}}</h3></md-grid-tile-header>
+        <md-content layout="column" class="zodiac">
+            <span ng-repeat="zi in tile.infoList| orderBy: 'position'">
+                <span style="font-size: larger; color: blue">{{main.objectSign(zi.objectType)}}</span>
+                <span style="font-size: small">{{main.degree(zi.position)}}</span><br/>
+            </span>
+        </md-content>
+    </md-grid-tile>
+</md-grid-list>
